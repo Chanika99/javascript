@@ -1,23 +1,24 @@
-'use strict'
+'use strict';
 
-const integer = []
-for(let i = 0; i< 3; i++){
-  integer.push(prompt('Enter integer'))
+const input1 = prompt("Enter the first integer:");
+const input2 = prompt("Enter the second integer:");
+const input3 = prompt("Enter the third integer:");
+
+const num1 = Number(input1);
+const num2 = Number(input2);
+const num3 = Number(input3);
+
+if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+  document.getElementById('result').textContent = "Please enter valid integers.";
+} else {
+
+  const sum = num1 + num2 + num3;
+  const product = num1 * num2 * num3;
+  const average = sum / 3;
+
+   document.getElementById('result').innerHTML = `
+    <p>Sum: ${sum}</p>
+    <p>Product: ${product}</p>
+    <p>Average: ${average}</p>
+  `;
 }
-
-function calculate() {
-            // Get values from input fields and convert them to integers
-            let num1 = parseInt(document.getElementById("num1").value);
-            let num2 = parseInt(document.getElementById("num2").value);
-            let num3 = parseInt(document.getElementById("num3").value);
-
-            // Calculate sum, product, and average
-            let sum = num1 + num2 + num3;
-            let product = num1 * num2 * num3;
-            let average = sum / 3;
-
-            // Display results in HTML document
-            document.getElementById("sumResult").innerText = "Sum: " + sum;
-            document.getElementById("productResult").innerText = "Product: " + product;
-            document.getElementById("averageResult").innerText = "Average: " + average.toFixed(2);
-        }
