@@ -1,16 +1,18 @@
 'use strict';
 
 function even(arr) {
-  const evenNumbers = [];
-  for (const number of arr) {
-    if (number % 2 !==0) {
-      const index = arr.indexOf(number);
-      arr.splice(index,1)
+    let evenNumbers = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            evenNumbers.push(arr[i]);
+        }
     }
-  }
+    return evenNumbers;
 }
 
-const numbers = [2, 256, 69, 75, 58, 6, 5, 1, 85, 92, 14]
-console.log(numbers)
-even(numbers)
-console.log(numbers);
+const numbers = [2, 7, 4, 285, 46];
+
+const evenNumbersArray = even(numbers);
+
+console.log("Original array:", numbers);
+console.log("Array of even numbers:", evenNumbersArray);

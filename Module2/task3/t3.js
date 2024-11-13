@@ -3,7 +3,7 @@
 const dogs = []
 
 for (let i = 0; i < 6; i++) {
-  dogs.push(prompt('Give name for Dog' + (i + 1)));
+  dogs.push(prompt('Give name for Dog ' + (i + 1)));
 }
 
 dogs.sort().reverse();
