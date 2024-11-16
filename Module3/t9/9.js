@@ -1,66 +1,43 @@
 'use strict'
 
-document.addEventListener('DOMContentLoaded', function () {
-    function calculate() {
-        const userInput = document.getElementById('userInput').value.trim();
+const calculationInput = document.getElementById("calculation");
+const calculateButton = document.getElementById("start");
+const resultParagraph = document.getElementById("result");
 
-        if (userInput.length === 0) {
-            document.getElementById('result').textContent = 'Please enter a calculation.';
-            return;
-        }
+function calculate() {
+    const input = calculationInput.value.trim();
 
-        let operator, num1, num2;
-
-        if (userInput.includes('+')) {
-            operator = '+';
-        } else if (userInput.includes('-')) {
-            operator = '-';
-        } else if (userInput.includes('*')) {
-            operator = '*';
-        } else if (userInput.includes('/')) {
-            operator = '/';
+    if (input.includes("+")) {
+        const parts = input.split("+");
+        const num1 = parseInt(parts[0]);
+        const num2 = parseInt(parts[1]);
+        const result = num1 + num2;
+        resultParagraph.textContent = `Result: ${result}`;
+    } else if (input.includes("-")) {
+        const parts = input.split("-");
+        const num1 = parseInt(parts[0]);
+        const num2 = parseInt(parts[1]);
+        const result = num1 - num2;
+        resultParagraph.textContent = `Result: ${result}`;
+    } else if (input.includes("*")) {
+        const parts = input.split("*");
+        const num1 = parseInt(parts[0]);
+        const num2 = parseInt(parts[1]);
+        const result = num1 * num2;
+        resultParagraph.textContent = `Result: ${result}`;
+    } else if (input.includes("/")) {
+        const parts = input.split("/");
+        const num1 = parseInt(parts[0]);
+        const num2 = parseInt(parts[1]);
+        if (num2 === 0) {
+            resultParagraph.textContent = "Error: Cannot divide by zero.";
         } else {
-            document.getElementById('result').textContent = 'Invalid operation. Please use +, -, *, or /.';
-            return;
+            const result = num1 / num2;
+            resultParagraph.textContent = `Result: ${result}`;
         }
-
-        const numbers = userInput.split(operator);
-
-        if (numbers.length !== 2) {
-            document.getElementById('result').textContent = 'Invalid input. Please enter a valid calculation.';
-            return;
-        }
-
-        num1 = parseInt(numbers[0]);
-        num2 = parseInt(numbers[1]);
-
-        let result;
-
-        switch (operator) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                if (num2 !== 0) {
-                    result = num1 / num2;
-                } else {
-                    document.getElementById('result').textContent = 'Cannot divide by zero';
-                    return;
-                }
-                break;
-            default:
-                document.getElementById('result').textContent = 'Invalid operation. Please use +, -, *, or /.';
-                return;
-        }
-
-        document.getElementById('result').textContent = `Result: ${result}`;
+    } else {
+        resultParagraph.textContent = "Error: Invalid input. Use +, -, *, or /.";
     }
+}
 
-    document.getElementById('start').addEventListener('click', calculate);
-});
+calculateButton.addEventListener("click", calculate);
